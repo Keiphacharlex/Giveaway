@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveaway</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        div{
+            text-align: center;
+           background-color: aqua;
+           height: 100%;
+           width: 100%;
+        }
+        button{
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            position: absolute;
+            left: 40%;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover{
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        button:active {
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>GIVEAWAY</h1>
+        <h3>Click the button below to claim your google play giftcode!</h3>
+        <h4>If you dont win in your first try keep on clicking (There is no limit to how much you can keep on going)</h4>
+    </div>
+    <button id="redirectButton">POP THE PRIZE</button>
+    <script>
+        let clickCount  = localStorage.getItem('clickCount') ? parseInt(localStorage.getItem('clickCount')) : 0;
+
+        document.getElementById('redirectButton').addEventListener('click', function() {
+            clickCount++;
+
+            localStorage.setItem('clickCount', clickCount);
+
+            //Check if its an odd or even number
+            if (clickCount % 2 !== 0) {
+                //Odd clicks redirect to ads site
+                window.location.href = "https://www.modcraftforge.com/minecraft/red-dead-weaponry?pub=3226116";
+            } else {
+                const random = Math.random() * 100;
+                if (random <= 80) {
+                    window.location.href = "adstest.html";
+                } else if (random <= 80 + 15) {
+                    window.location.href = "randomCode.html";
+                } else if ( random <= 80 + 15 + 5){
+                    window.location.href = "gpg.html"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

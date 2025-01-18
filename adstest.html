@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Again</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7fc;
+        }
+        h1{
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .image-container{
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .redirect-button{
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>ALMOST GOT CHAAHH... TRY AGAIN</h1><br>
+    <div class="image-container"
+    id="randomImage"></div>
+    <button class="redirect-button" id="redirectButton">TRY AGAIN</button>
+    <script>
+        const images = [
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '4.jpg',
+            '5.jpg'
+        ];
+
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+
+        document.getElementById('randomImage').style.backgroundImage = `url(${randomImage})`;
+
+        document.getElementById('redirectButton').addEventListener('click', function() {
+            window.location.href = 'giveaway.html';
+        });
+    </script>
+</body>
+</html>

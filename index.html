@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIVEAWAY</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            letter-spacing: 4px;
+            color: aqua;
+            text-shadow: 1px 1px  black;
+        }
+        h2{
+            text-align: center;
+            background-color: yellow;
+            height: 50px;
+            padding-top: 20px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            letter-spacing: 6px;
+            font-weight: lighter;
+            width: 100%;
+        }
+
+        .container{
+            background-color: aquamarine;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: lighter;
+            font-size: 1rem;
+            width: 100%;
+            height: 500px;
+            margin-top: 10px;
+        }
+
+        #shareButton {
+            position: absolute;
+            left: 50%;
+            transform: scale(2);
+        }
+
+        #newButton {
+            position: absolute;
+            left: 50%;
+            transform: scale(2);
+        }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO GIVEAWAY</h1>
+    <div class="divh2">
+        <h2>GIVEAWAY!!!</h2>
+    </div>
+    <div class="container">
+        <h4>Rules:</h4>
+         <ul>
+            <li>This is just a small giveway.</li>
+            <li>The prize is just Rs 1000 worth of Google play giftcard. <br> and its divided into: <dl>Rs 10 x 50</dl>
+                <dl>Rs 100 x 5</dl>
+            </li>
+            <li>The more you click on the button the higher the chances of getting you winning the prize.</li>
+            <li>The percentage are:
+                <dl>95%  :  Try Again</dl>
+                <dl>4.5% : Rs 10 Google Play Giftcard</dl>
+                <dl>0.5% : Rs 100 Google Play Giftcard</dl>
+            </li>
+            <li>BEST OF LUCK</li>
+            <div class="buttDiv">
+                <h3>Share to five group/people on whatsapp to enter giveaway!</h3>
+                <button id="shareButton">Share</button>
+            </div>
+        </ul>
+    </div>
+    <script>
+        document.getElementById('shareButton').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'FREE GOOGLE PLAY GIFTCARD GIVAWAY', text: 'Check this out!', url: window.location.href
+                }).then(() => {
+                    console.log('Content shared successfully');
+
+                    //Hide the share button
+                    document.getElementById('shareButton').style.display = 'none';
+
+                    //Create a new button
+                    const newButton = document.createElement('button');
+                    newButton.textContent = 'Giveaway';
+                    newButton.id = 'newButton';
+                    document.body.appendChild(newButton);
+
+                    //When new button is clicked
+                    newButton.addEventListener('click', function() {
+                        window.location.href = 'giveaway.html';
+                    });
+
+
+                }).catch((error) => {
+                    console.log('Error sharing content:', error);
+                });
+            } else {
+                alert('Share API is not supported on your device/browser.');
+            }
+        });
+        this.style.display = 'none';
+    </script>
+</body>
+</html>

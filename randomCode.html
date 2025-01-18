@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playstore Giftcard</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(to bottom right, #f3f4f6, #e3e4e8);
+            color: #333;
+            margin: 0;
+        }
+
+        h1{
+            font-size: 2.5rem;
+            color: #007BFF;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            display: inline-block;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #007BFF, #00C6FF);
+            border-radius: 2px;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn{
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                width: -100%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .code-container {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            animation: popUp 1s ease-in-out;
+        }
+
+        @keyframes popUp {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            } to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #randomCode {
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            letter-spacing: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .oops-message {
+            color: rgba(0, 0, 0, 0.2);
+            margin-left: 10px;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        #copyButton {
+            margin-top: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #28a745, #218838);
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        #copyButton:hover {
+           transform: scale(1.05);
+           background: linear-gradient(45deg, #218838, #1c7430);
+        }
+    </style>
+</head>
+<body>
+    <h1>Claim Your Code <br>
+    google Giftcard</h1>
+    <div class="code-container">
+        <span id="randomCode"></span> <br><br>
+        <span class="oops-message">OOPS SOMEONE ALREADY CLAIMED THIS ONE,<br> TRY AGAIN.</span>
+    </div><br>
+    <button id="copyButton">Copy</button>
+    <script>
+        const generateRandomeCode = (length = 13) => {
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return Array.from({length}, () => characters.charAt(Math.floor(Math.random() * characters.length))).join("");
+        };
+
+        const randomCodeElement = document.getElementById("randomCode");
+        const randomCode = generateRandomeCode();
+        randomCodeElement.textContent = randomCode;
+
+        document.getElementById("copyButton").addEventListener("click", () => {
+            navigator.clipboard.writeText(randomCode).then(() => {
+                setTimeout(() => {
+                    window.location.href = "giveaway.html";
+                }, 2000);
+            }).catch(err => console.error("Failed to copy text: ", err));
+        });
+    </script>
+</body>
+</html>
